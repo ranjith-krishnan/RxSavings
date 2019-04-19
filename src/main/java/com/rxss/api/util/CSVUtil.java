@@ -11,10 +11,9 @@ public class CSVUtil {
 
     public static final String SEPARATOR = ",";
     private static String line = "";
-    public static List<PharmacyInfo> pharmacyMasterList;
 
-    public static void readCSVFile(InputStream stream) {
-        pharmacyMasterList = new ArrayList<>();
+    public static List<PharmacyInfo> readCSVFile(InputStream stream) {
+        List<PharmacyInfo> pharmacyMasterList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(stream))) {
 
@@ -25,8 +24,6 @@ public class CSVUtil {
                 String[] pharmacyLine = line.split(SEPARATOR);
 
                 PharmacyInfo pharmacyInfo = new PharmacyInfo();
-                System.out.println("Pharmacy [code= " + pharmacyLine[0] + " , name=" + pharmacyLine[1] + "]");
-                pharmacyInfo.setUuid(UUID.randomUUID().toString());
                 pharmacyInfo.setName(removeQuotes(pharmacyLine[0]));
                 pharmacyInfo.setAddress(removeQuotes(pharmacyLine[1]));
                 pharmacyInfo.setCity(removeQuotes(pharmacyLine[2]));
@@ -40,9 +37,10 @@ public class CSVUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return pharmacyMasterList;
     }
 
     public static String removeQuotes(String stringWithQuotes) {
-        return stringWithQuotes.replaceAll("^\"|\"$","");
+        return stringWithQuotes.replaceAll("^\"|\"$","").trim();
     }
 }

@@ -1,8 +1,17 @@
 package com.rxss.api.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class PharmacyInfo {
 
-    private String uuid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String name;
     private String address;
     private String city;
@@ -11,9 +20,25 @@ public class PharmacyInfo {
     private Double latitude;
     private Double longitude;
 
-    public String getUuid() { return uuid; }
+    public PharmacyInfo() {}
 
-    public void setUuid(String uuid) { this.uuid = uuid; }
+    public PharmacyInfo(String name, String address, String city, String state, Integer zipCode, Double latitude, Double longitude) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -65,5 +90,18 @@ public class PharmacyInfo {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return "PharmacyInfo{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode=" + zipCode +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }
