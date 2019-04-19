@@ -22,12 +22,14 @@ public class PharmacyService {
         List<PharmacyResponse> pharmacyResponseList;
         pharmacyResponseList = calculateDistances(latitude, longitude);
 
+        // sort the pharmacyResponseList in ascending order using the custom Comparator PharmacyDistanceComparator
         Collections.sort(pharmacyResponseList, new PharmacyDistanceComparator());
         return pharmacyResponseList.get(0);
     }
 
     private List<PharmacyResponse> calculateDistances(Double latitude, Double longitude) {
         List<PharmacyResponse> pharmacyResponseList = new ArrayList<>();
+        // get pharmacy list from db and iterate through the list to populate distance
         for (PharmacyInfo pharmacyInfo : pharmacyInfoRepository.findAll()) {
             PharmacyResponse pharmacyResponse = new PharmacyResponse(pharmacyInfo.getName(), pharmacyInfo.getAddress(),
                     DistanceCalculator.distance(latitude, longitude, pharmacyInfo.getLatitude(), pharmacyInfo.getLongitude()));

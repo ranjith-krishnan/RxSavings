@@ -1,7 +1,8 @@
 package com.rxss.api.util;
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-/*::                                                                         :*/
+/*::  'Haversine Formula' Code picked from https://www.geodatasource.com     :*/
+/*::                                                                         :/*
 /*::  This routine calculates the distance between two points (given the     :*/
 /*::  latitude/longitude of those points). It is being used to calculate     :*/
 /*::  the distance between two locations using GeoDataSource (TM) prodducts  :*/

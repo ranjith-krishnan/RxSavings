@@ -30,13 +30,13 @@ public class PharmacyLoadService {
     @PostConstruct
     public void init() {
         Resource resource = resourceLoader.getResource("classpath:pharmacies.csv");
-        List<PharmacyInfo> pharmacyInfos = new ArrayList<>();
+        List<PharmacyInfo> pharmacyInfos;
         LOGGER.info("Reading from array");
         try {
             pharmacyInfos = CSVUtil.readCSVFile(resource.getInputStream());
         } catch (Exception ex) {
-            LOGGER.error("Resource not found");
             ex.printStackTrace();
+            throw new RuntimeException("Fatal Error: Cannot load Data from CSV file!" , ex);
         }
         for(PharmacyInfo pharmacyInfo : pharmacyInfos) {
             pharmacyInfoRepository.save(pharmacyInfo);
