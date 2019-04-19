@@ -2,10 +2,7 @@ package com.rxss.api.util;
 
 import com.rxss.api.model.PharmacyInfo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,10 +13,10 @@ public class CSVUtil {
     private static String line = "";
     public static List<PharmacyInfo> pharmacyMasterList;
 
-    public static void readCSVFile(File file) {
+    public static void readCSVFile(InputStream stream) {
         pharmacyMasterList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(stream))) {
 
         br.readLine();
             while ((line = br.readLine()) != null) {

@@ -25,7 +25,7 @@ public class PharmacyLoadService {
         Resource resource = resourceLoader.getResource("classpath:pharmacies.csv");
         LOGGER.debug("Reading from array");
         try {
-            CSVUtil.readCSVFile(resource.getFile());
+            CSVUtil.readCSVFile(resource.getInputStream());
         } catch (Exception ex) {
             LOGGER.error("Resource not found");
             ex.printStackTrace();
